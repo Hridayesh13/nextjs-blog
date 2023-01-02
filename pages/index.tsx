@@ -6,6 +6,10 @@ import { getSortedPostsData } from "../lib/posts";
 import Date from "../components/date";
 import React from "react";
 import { GetStaticProps } from "next";
+import { ModalExample } from "../components/modal/SampleModal";
+import { AlertDialogExample } from "../components/modal/DeleteAlert";
+import { DrawerExample } from "../components/modal/UserDrawer";
+import { Button, ButtonGroup, ChakraProvider } from "@chakra-ui/react";
 
 export default function Home({
 	allPostsData,
@@ -17,35 +21,47 @@ export default function Home({
 	}[];
 }) {
 	return (
-		<Layout home>
-			<Head>
-				<title>{siteTitle}</title>
-			</Head>
-			<section className={utilStyles.headingMd}>
-				<p>
-					Hi. I'm <b>Hri</b>. Software Engineer@Rokubunnoni Inc.
-				</p>
-				<p>Full Stack Developer (Web2 + Web3)</p>
-				<p>1 year+ experience.</p>
-			</section>
+		<ChakraProvider>
+			<Layout home>
+				<Head>
+					<title>{siteTitle}</title>
+				</Head>
+				{/* <section className={utilStyles.headingMd}>
+					<p>
+						Hi. I'm <b>Hri</b>. Software Engineer@Rokubunnoni Inc.
+					</p>
+					<p>Full Stack Developer (Web2 + Web3)</p>
+					<p>1 year+ experience.</p>
+				</section>
 
-			<section
-				className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}
-			>
-				<h2 className={utilStyles.headingLg}>Blog</h2>
-				<ul className={utilStyles.list}>
-					{allPostsData.map(({ id, date, title }) => (
-						<li className={utilStyles.listItem} key={id}>
-							<Link href={`/posts/${id}`}>{title}</Link>
-							<br />
-							<small className={utilStyles.lightText}>
-								<Date dateString={date} />
-							</small>
-						</li>
-					))}
-				</ul>
-			</section>
-		</Layout>
+				<section
+					className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}
+				>
+					<h2 className={utilStyles.headingLg}>Blog</h2>
+					<ul className={utilStyles.list}>
+						{allPostsData.map(({ id, date, title }) => (
+							<li className={utilStyles.listItem} key={id}>
+								<Link href={`/posts/${id}`}>{title}</Link>
+								<br />
+								<small className={utilStyles.lightText}>
+									<Date dateString={date} />
+								</small>
+							</li>
+						))}
+					</ul>
+				</section> */}
+				<section>
+					<ButtonGroup spacing="6">
+						<ModalExample />
+						<AlertDialogExample />
+						<DrawerExample />
+						<Button isLoading colorScheme="blackAlpha">
+							Wait
+						</Button>
+					</ButtonGroup>
+				</section>
+			</Layout>
+		</ChakraProvider>
 	);
 }
 
