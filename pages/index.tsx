@@ -13,7 +13,7 @@ import { Text, Button, ButtonGroup, ChakraProvider, SimpleGrid, Box } from "@cha
 import { ReportCard } from "../components/ReportCard";
 import { PageButton } from "../components/PageButton";
 import { ToggleColorMode } from "../components/ToggleColor";
-import { FilterArray } from "./FilterArray";
+import { FilterArray } from "../components/FilterArray";
 
 export default function Home({
 	allPostsData,
