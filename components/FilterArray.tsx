@@ -14,6 +14,6 @@ export const FilterArray = () => {
         {Array(5).fill(1).map((el, i) =>
             <Button isActive={false}>Filter {i + 1}</Button>
         )}
-        <Button isActive={true}>Filter {11}</Button>
+        <Button isActive={true}>Filter active</Button>
     </ButtonGroup>
 }
