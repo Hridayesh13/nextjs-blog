@@ -9,7 +9,11 @@ import { GetStaticProps } from "next";
 import { ModalExample } from "../components/modal/SampleModal";
 import { AlertDialogExample } from "../components/modal/DeleteAlert";
 import { DrawerExample } from "../components/modal/UserDrawer";
-import { Button, ButtonGroup, ChakraProvider } from "@chakra-ui/react";
+import { Text, Button, ButtonGroup, ChakraProvider, SimpleGrid, Box } from "@chakra-ui/react";
+import { ReportCard } from "../components/ReportCard";
+import { PageButton } from "../components/PageButton";
+import { ToggleColorMode } from "../components/ToggleColor";
+import { FilterArray } from "./FilterArray";
 
 export default function Home({
 	allPostsData,
@@ -21,8 +25,9 @@ export default function Home({
 	}[];
 }) {
 	return (
-		<ChakraProvider>
+		<ChakraProvider >
 			<Layout home>
+
 				<Head>
 					<title>{siteTitle}</title>
 				</Head>
@@ -50,16 +55,30 @@ export default function Home({
 						))}
 					</ul>
 				</section> */}
+
 				<section>
 					<ButtonGroup spacing="6">
 						<ModalExample />
 						<AlertDialogExample />
 						<DrawerExample />
-						<Button isLoading colorScheme="blackAlpha">
-							Wait
-						</Button>
+						<ToggleColorMode />
 					</ButtonGroup>
 				</section>
+				<br />
+				<section>
+					<FilterArray />
+					<br />
+					<br />
+					<SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
+						<ReportCard />
+						<ReportCard />
+						<ReportCard />
+						<ReportCard />
+						<ReportCard />
+					</SimpleGrid>
+				</section>
+				<br />
+				<PageButton pageCount={5} currentPage={1} />
 			</Layout>
 		</ChakraProvider>
 	);
