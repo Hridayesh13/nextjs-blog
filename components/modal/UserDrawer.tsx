@@ -54,7 +54,6 @@ export const DrawerExample = () => {
 								placeholder="minimum 8 characters"
 							/>
 						</form>
-						<br />
 						<Button colorScheme="teal">Sign Up</Button>
 					</DrawerBody>
 				</DrawerContent>
