@@ -9,29 +9,39 @@ import { GetStaticProps } from "next";
 import { ModalExample } from "../components/modal/SampleModal";
 import { AlertDialogExample } from "../components/modal/DeleteAlert";
 import { DrawerExample } from "../components/modal/UserDrawer";
-import { Text, Button, ButtonGroup, ChakraProvider, SimpleGrid, Box } from "@chakra-ui/react";
+import {
+  Text,
+  Button,
+  ButtonGroup,
+  ChakraProvider,
+  SimpleGrid,
+  Box,
+  Divider,
+} from "@chakra-ui/react";
 import { ReportCard } from "../components/ReportCard";
 import { PageButton } from "../components/PageButton";
-import { ToggleColorMode } from "../components/ToggleColor";
 import { FilterArray } from "../components/FilterArray";
+import { Header } from "../components/Header";
+import { PriceCard } from "../components/PriceCard";
+import { ToReadMore } from "../components/ToReadMore";
 
 export default function Home({
-	allPostsData,
+  allPostsData,
 }: {
-	allPostsData: {
-		date: string;
-		title: string;
-		id: string;
-	}[];
+  allPostsData: {
+    date: string;
+    title: string;
+    id: string;
+  }[];
 }) {
-	return (
-		<ChakraProvider >
-			<Layout home>
-
-				<Head>
-					<title>{siteTitle}</title>
-				</Head>
-				{/* <section className={utilStyles.headingMd}>
+  return (
+    <ChakraProvider>
+      <Header />
+      <Layout home>
+        <Head>
+          <title>{siteTitle}</title>
+        </Head>
+        {/* <section className={utilStyles.headingMd}>
 					<p>
 						Hi. I'm <b>Hri</b>. Software Engineer@Rokubunnoni Inc.
 					</p>
@@ -55,40 +65,41 @@ export default function Home({
 						))}
 					</ul>
 				</section> */}
-
-				<section>
-					<ButtonGroup spacing="6">
-						<ModalExample />
-						<AlertDialogExample />
-						<DrawerExample />
-						<ToggleColorMode />
-					</ButtonGroup>
-				</section>
-				<br />
-				<section>
-					<FilterArray />
-					<br />
-					<br />
-					<SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
-						<ReportCard />
-						<ReportCard />
-						<ReportCard />
-						<ReportCard />
-						<ReportCard />
-					</SimpleGrid>
-				</section>
-				<br />
-				<PageButton pageCount={5} currentPage={1} />
-			</Layout>
-		</ChakraProvider>
-	);
+        <section>
+          <ButtonGroup spacing="6">
+            <ModalExample />
+            <AlertDialogExample />
+            <DrawerExample />
+          </ButtonGroup>
+        </section>
+        <br />
+        <section>
+          <FilterArray />
+          <br />
+          <br />
+          <SimpleGrid
+            spacing={4}
+            templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+          >
+            <ReportCard />
+          </SimpleGrid>
+        </section>
+        <br />
+        <PriceCard />
+        <br />
+        <ToReadMore />
+        <br />
+        <PageButton pageCount={5} currentPage={1} />
+      </Layout>
+    </ChakraProvider>
+  );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-	const allPostsData = getSortedPostsData();
-	return {
-		props: {
-			allPostsData,
-		},
-	};
+  const allPostsData = getSortedPostsData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
 };
