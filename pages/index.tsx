@@ -1,47 +1,29 @@
-import Head from "next/head";
-import Link from "next/link";
-import Layout, { siteTitle } from "../components/layout";
-import utilStyles from "../styles/utils.module.css";
-import { getSortedPostsData } from "../lib/posts";
-import Date from "../components/date";
-import React from "react";
-import { GetStaticProps } from "next";
-import { ModalExample } from "../components/modal/SampleModal";
-import { AlertDialogExample } from "../components/modal/DeleteAlert";
-import { DrawerExample } from "../components/modal/UserDrawer";
-import {
-  Text,
-  Button,
-  ButtonGroup,
-  ChakraProvider,
-  SimpleGrid,
-  Box,
-  Divider,
-} from "@chakra-ui/react";
-import { ReportCard } from "../components/ReportCard";
-import { PageButton } from "../components/PageButton";
-import { FilterArray } from "../components/FilterArray";
-import { Header } from "../components/Header";
-import { PriceCard } from "../components/PriceCard";
-import { ToReadMore } from "../components/ToReadMore";
+import Head from 'next/head';
+import Link from 'next/link';
+import Layout, { siteTitle } from '../components/layout';
+import utilStyles from '../styles/utils.module.css';
+import { getSortedPostsData } from '../lib/posts';
+import Date from '../components/date';
+import React from 'react';
+import { GetStaticProps } from 'next';
+import { ChakraProvider } from '@chakra-ui/react';
 
 export default function Home({
-  allPostsData,
+	allPostsData,
 }: {
-  allPostsData: {
-    date: string;
-    title: string;
-    id: string;
-  }[];
+	allPostsData: {
+		date: string;
+		title: string;
+		id: string;
+	}[];
 }) {
-  return (
-    <ChakraProvider>
-      <Header />
-      <Layout home>
-        <Head>
-          <title>{siteTitle}</title>
-        </Head>
-        {/* <section className={utilStyles.headingMd}>
+	return (
+		<ChakraProvider>
+			<Layout home>
+				<Head>
+					<title>{siteTitle}</title>
+				</Head>
+				<section className={utilStyles.headingMd}>
 					<p>
 						Hi. I'm <b>Hri</b>. Software Engineer@Rokubunnoni Inc.
 					</p>
@@ -49,9 +31,7 @@ export default function Home({
 					<p>1 year+ experience.</p>
 				</section>
 
-				<section
-					className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}
-				>
+				<section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
 					<h2 className={utilStyles.headingLg}>Blog</h2>
 					<ul className={utilStyles.list}>
 						{allPostsData.map(({ id, date, title }) => (
@@ -64,42 +44,17 @@ export default function Home({
 							</li>
 						))}
 					</ul>
-				</section> */}
-        <section>
-          <ButtonGroup spacing="6">
-            <ModalExample />
-            <AlertDialogExample />
-            <DrawerExample />
-          </ButtonGroup>
-        </section>
-        <br />
-        <section>
-          <FilterArray />
-          <br />
-          <br />
-          <SimpleGrid
-            spacing={4}
-            templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
-          >
-            <ReportCard />
-          </SimpleGrid>
-        </section>
-        <br />
-        <PriceCard />
-        <br />
-        <ToReadMore />
-        <br />
-        <PageButton pageCount={5} currentPage={1} />
-      </Layout>
-    </ChakraProvider>
-  );
+				</section>
+			</Layout>
+		</ChakraProvider>
+	);
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData();
-  return {
-    props: {
-      allPostsData,
-    },
-  };
+	const allPostsData = getSortedPostsData();
+	return {
+		props: {
+			allPostsData,
+		},
+	};
 };
